@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/*App.js*/
+import React, { Component } from "react";
+import "./App.css";
+//Import all needed Component for this tutorial
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from "react-router-dom";
+//Pages
+import MainPage from "./pages";
+import RegistrationPage from "./pages/Registration";
+import LoginPage from "./pages/Login";
+class App extends Component {
+  render() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/Login" component={LoginPage} />
+                <Route path="/Registration" component={RegistrationPage} />
+                <Route path="/" component={MainPage} />
+            </Switch>
+          {/*All our Routes goes here!*/}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        </Router>
+    );
+  }
 }
 
 export default App;
