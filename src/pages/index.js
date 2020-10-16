@@ -1,16 +1,16 @@
-/*index.js*/
 import React from "react";
-import {Link} from "react-router-dom"
-//Functional Component
-const MainPage = () => {
-    return (
-        <div>
-            <h3>Welcome to the React Router Tutorial</h3>
-            <small>Main Page</small>
-            <Link to="/Registration"> Show Registration Page</Link>
-            <Link to="/Login"> Show Login Page</Link>
-        </div>
-    );
-};
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
-export default MainPage;
+//This is our login page
+ReactDOM.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
+    document.getElementById("root")
+);
+
+serviceWorker.unregister();
