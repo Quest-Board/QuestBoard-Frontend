@@ -4,6 +4,7 @@ class SignalR extends PureComponent {
     constructor (props) {
       super(props);
   
+      //insert ip address of backend here
       this.connection = null;
       this.onNotifReceived = this.onNotifReceived.bind(this);
     }
