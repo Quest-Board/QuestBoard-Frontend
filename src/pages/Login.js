@@ -4,20 +4,23 @@ import {Redirect} from "react-router-dom";
 export default class Login extends Component {
     password;
     address;
-    constructor(){
-        super();
+
+    constructor(props){
+        super(props);
         this.state={redirect:null};
     }
     LoginCall=(event)=>{
         event.preventDefault();
         const Http = new XMLHttpRequest();
-        const url='https://jsonplaceholder.typcode.com/posts';
+        const url='https://jsonplaceholder.typcode.com/posts';//TODO replace this URL with the server URL.
         const data={
             email: this.address,
             password: this.password
         }
+
         Http.open("POST",url);
         Http.send(JSON.stringify(data));
+        //TODO remove this if statement and replace with one corresponding to HTTP response.
         if(this.address==="Test@Test.com"&&this.password==="TestPass1"){
             this.setState({redirect: "/Board"});
         }
