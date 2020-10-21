@@ -7,7 +7,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/Registration";
 
 function App() {
-    return (<Router>
+    return (
+        <Router>
             <div className="App">
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                     <div className="container">
@@ -34,7 +35,8 @@ function App() {
                         </Switch>
                     </div>
                 </div>
-            </div></Router>
+            </div>
+    </Router>
     );
 }
 
