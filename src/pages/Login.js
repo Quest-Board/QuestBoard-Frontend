@@ -11,23 +11,21 @@ export default class Login extends Component {
     }
     LoginCall=(event)=>{
         event.preventDefault();
-        const Http = new XMLHttpRequest();
-        const url="/api/auth/login";//TODO replace this URL with the server URL.
-        const data={
-            email: this.address,
-            password: this.password
-        }
-
-        Http.open("POST",url);
-        Http.send(JSON.stringify(data));
-        //TODO remove this if statement and replace with one corresponding to HTTP response.
-        if(this.address==="Test@Test.com"&&this.password==="TestPass1"){
-            this.setState({redirect: "/User/Board"});
-        }
-        else{
-            alert("Password or Username is incorrect");
-        }
-
+        //TODO: change url to real backend, currently using postman mock server
+        return fetch('https://79771b58-1e8b-4f8a-b168-c46e4f0fc9cc.mock.pstmn.io/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: this.address,
+              password: this.password
+            })
+          })
+          .then((response) => {
+            if (response.ok){
+                console.log("ok");
+                this.setState({redirect: "/User/Board"})
+            }
+            else window.alert("Username or password is incorrect.")
+          })
     }
 
     UserChangeHandler=(event)=>{
