@@ -12,7 +12,7 @@ export default class Login extends Component {
     LoginCall=(event)=>{
         event.preventDefault();
         const Http = new XMLHttpRequest();
-        const url='https://jsonplaceholder.typcode.com/posts';//TODO replace this URL with the server URL.
+        const url="/api/auth/login";//TODO replace this URL with the server URL.
         const data={
             email: this.address,
             password: this.password
@@ -22,7 +22,7 @@ export default class Login extends Component {
         Http.send(JSON.stringify(data));
         //TODO remove this if statement and replace with one corresponding to HTTP response.
         if(this.address==="Test@Test.com"&&this.password==="TestPass1"){
-            this.setState({redirect: "/Board"});
+            this.setState({redirect: "/User/Board"});
         }
         else{
             alert("Password or Username is incorrect");

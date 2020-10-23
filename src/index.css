@@ -18,7 +18,7 @@ h1,h2,h3,h4,h5,h6,label,span {
   font-family: 'Fira Sans', sans-serif;
 }
 
-body, html, .App, #root, .auth-wrapper {
+body, html, .App,.Home, #root, .auth-wrapper, .board-wrapper {
   width: 100%;
   height: 100%;
 }
@@ -35,6 +35,27 @@ body, html, .App, #root, .auth-wrapper {
   text-align: left;
 }
 
+.board-wrapper {
+  display: flex;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  transform: translate(-10%,-10%);
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.board{
+  width: 1800px;
+  height: 850px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+}
 .auth-inner {
   width: 450px;
   margin: auto;
@@ -45,12 +66,19 @@ body, html, .App, #root, .auth-wrapper {
   transition: all .3s;
 }
 
-.auth-wrapper .form-control:focus {
+.auth-wrapper .board-wrapper .form-control:focus {
   border-color: #167bff;
   box-shadow: none;
 }
 
 .auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.board-wrapper h3 {
   text-align: center;
   margin: 0;
   line-height: 1;

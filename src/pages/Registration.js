@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 export default class SignUp extends Component {
 
@@ -13,7 +13,7 @@ export default class SignUp extends Component {
     RegistrationCall=(event)=>{
         event.preventDefault();
         const Http = new XMLHttpRequest();
-        const url='https://jsonplaceholder.typcode.com/posts';//TODO replace this URL with the server URL.
+        const url="/api/auth/register";//TODO replace this URL with the server URL.
         const data={
             email: this.address,
             password: this.password
@@ -37,25 +37,25 @@ export default class SignUp extends Component {
             return <Redirect to={this.state.redirect}/>
         }
         return (
+                    <form onSubmit={this.RegistrationCall}>
+                        <h3>Sign Up</h3>
 
-            <form onSubmit={this.RegistrationCall}>
-                <h3>Sign Up</h3>
+                        <div className="form-group">
+                            <label>Email address</label>
+                            <input type="email" onChange={this.UserChangeHandler} className="form-control" placeholder="Enter email" />
+                        </div>
 
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" onChange={this.UserChangeHandler} className="form-control" placeholder="Enter email" />
-                </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" onChange={this.PassChangeHandler} className="form-control" placeholder="Enter password" />
+                        </div>
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" onChange={this.PassChangeHandler} className="form-control" placeholder="Enter password" />
-                </div>
+                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                        <p className="forgot-password text-right">
+                            Already registered <a href="/sign-in">sign in?</a>
+                        </p>
+                    </form>
 
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                <p className="forgot-password text-right">
-                    Already registered <a href="/sign-in">sign in?</a>
-                </p>
-            </form>
         );
     }
 }
