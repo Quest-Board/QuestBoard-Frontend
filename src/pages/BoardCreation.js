@@ -16,7 +16,7 @@ export default class BoardCreation extends Component {
                         <div className="collapse navbar-collapse" id="navbarToggler">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to={"/User/Board"}>Your Board</Link>
+                                    <Link className="nav-link" to={"/User/Board"}>My Boards</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/User/CreateBoard"}>Create Board</Link>
@@ -30,7 +30,14 @@ export default class BoardCreation extends Component {
                 </nav>
                 <div className="board-wrapper">
                     <div className="board">
-                        <p>Hello World</p>
+                        <form>
+                            <h3>Create Board</h3>
+                            <div className="form-group">
+                                <label>Board Name</label>
+                                <input type="text" className="form-control" placeholder="Name"/>
+                            </div>
+                            <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>

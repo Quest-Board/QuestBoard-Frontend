@@ -17,7 +17,7 @@ export default class Board extends Component {
                         <div className="collapse navbar-collapse" id="navbarToggler">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to={"/User/Board"}>Your Board</Link>
+                                    <Link className="nav-link" to={"/User/Board"}>My Board</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/User/CreateBoard"}>Create Board</Link>
