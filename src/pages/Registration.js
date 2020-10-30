@@ -12,17 +12,24 @@ export default class SignUp extends Component {
     }
     RegistrationCall=(event)=>{
         event.preventDefault();
-        const Http = new XMLHttpRequest();
-        const url="/api/auth/register";//TODO replace this URL with the server URL.
-        const data={
-            email: this.address,
-            password: this.password
-        }
-
-        Http.open("POST",url);
-        Http.send(JSON.stringify(data));
-
-        //TODO on successful response, redirect to login page.
+        return fetch('https://coms-319-t15.cs.iastate.edu/api/account/register', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: this.address,
+                password: this.password
+            })
+          })
+          .then((response) => {
+            if (response.ok){
+                console.log("ok");
+                this.setState({redirect: "/sign-in"})
+            }
+            else window.alert("Error")
+          })
     }
 
     UserChangeHandler=(event)=>{
