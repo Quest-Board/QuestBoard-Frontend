@@ -17,4 +17,6 @@ steps:
 - script: |
     npm install
     npm run build
+    sudo rm -r /srv/quest-board/QuestBoard-Frontend/build/
+    sudo cp -r build/ /srv/quest-board/QuestBoard-Frontend/
   displayName: 'npm install and build'
