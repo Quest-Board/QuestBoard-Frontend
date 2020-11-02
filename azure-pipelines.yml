@@ -16,7 +16,6 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cd /srv/quest-board/QuestBoard-Frontend
     npm install
     npm run build
   displayName: 'npm install and build'
