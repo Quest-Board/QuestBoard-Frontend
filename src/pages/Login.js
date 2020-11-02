@@ -9,9 +9,30 @@ export default class Login extends Component {
         super(props);
         this.state={redirect:null};
     }
+
+    //send login attempt with no body, will return ok if the 
+    //user has a valid cookie from the last login
+    CheckForCookie=()=> {
+        fetch('https://coms-319-t15.cs.iastate.edu/api/account/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+          })
+          .then((response) => {
+            if (response.ok){
+                this.setState({redirect: "/User/Board"})
+            }
+          })
+    }
+
+    componentDidMount() {
+        this.CheckForCookie();
+    }
+
     LoginCall=(event)=>{
         event.preventDefault();
-        //TODO: change url to real backend, currently using postman mock server
         return fetch('https://coms-319-t15.cs.iastate.edu/api/account/login', {
             method: 'POST',
             headers: {

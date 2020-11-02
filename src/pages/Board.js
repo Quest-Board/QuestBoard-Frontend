@@ -7,8 +7,15 @@ import BoardJoin from "./BoardJoin";
 
 export default class Board extends Component {
     list = ['Item 1', 'Item 2', 'Item 3']
+    constructor(props){
+        super(props);
+        this.state={redirect:null};
+    }
 
     render() {
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
         return (
             <div className="Board">
                 <nav className="navbar navbar-expand-lg navbar-light fixed-top">
