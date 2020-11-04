@@ -13,7 +13,7 @@ export default class Login extends Component {
     //send login attempt with no body, will return ok if the 
     //user has a valid cookie from the last login
     CheckForCookie=()=> {
-        fetch('https://coms-319-t15.cs.iastate.edu/api/account/login', {
+        fetch('https://coms-319-t15.cs.iastate.edu/api/board/create?boardname=testBoard', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
