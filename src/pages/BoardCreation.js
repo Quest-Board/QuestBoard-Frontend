@@ -98,6 +98,7 @@ export default class BoardCreation extends Component {
             }
             })
         }
+        this.setState({redirect: "/User/Board"})
     }
 
     BoardNameChangeHandler=(event)=>{
@@ -120,6 +121,9 @@ export default class BoardCreation extends Component {
 
 
     render() {
+        if(this.state.redirect){
+            return <Redirect to={this.state.redirect}/>
+        }
         const { emails } = this.state;
 
         return (
@@ -160,7 +164,7 @@ export default class BoardCreation extends Component {
                                 <input type="text" className="form-control" placeholder="Done" onChange={this.Column3NameChangeHandler}/>
 
                                 <label>Invite others</label>
-                                {/*TODO make font consistent*/}
+
                                 <ReactMultiEmail
                                     placeholder="email"
                                     emails={emails}
@@ -186,7 +190,6 @@ export default class BoardCreation extends Component {
                                     }}
                                 />
 
-                                
                             </div>
                             <button type="submit" className="btn btn-primary btn-block" style={{width: '100%'}}>Submit</button>
                         </form>
