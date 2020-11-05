@@ -4,7 +4,8 @@ import BoardCreation from "./BoardCreation";
 import BoardJoin from "./BoardJoin";
 
 //import Item from '../components/Item'
-
+import Columns from "../components/Columns";
+import MainMenu from "./MainMenu";
 export default class Board extends Component {
     list = ['Item 1', 'Item 2', 'Item 3']
 
@@ -17,7 +18,7 @@ export default class Board extends Component {
                         <div className="collapse navbar-collapse" id="navbarToggler">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to={"/User/Board"}>Your Board</Link>
+                                    <Link className="nav-link" to={"/User/Board"}>My Board</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/User/CreateBoard"}>Create Board</Link>
@@ -31,7 +32,7 @@ export default class Board extends Component {
                 </nav>
                 <div className="board-wrapper">
                     <div className="board">
-                        <p>Hello World</p>
+                        <Columns/>
                     </div>
                 </div>
             </div>
