@@ -1,0 +1,182 @@
+{
+  "id": "d5db52b1-743a-4398-851c-2f5f3a9d8b7f",
+  "version": "2.0",
+  "name": "QuestBoardTesting",
+  "url": "http://localhost:3000/User/JoinBoard",
+  "tests": [{
+    "id": "6314c1fa-348f-4884-b2be-3689a05ee9fb",
+    "name": "TestAccessCreateBoardFromBoard",
+    "commands": [{
+      "id": "61fd2891-1e0c-46bb-a88e-3bf979178cba",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/User/Board",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "325aeb82-a83a-4531-a5c9-45b59bfd69f6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1920x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4576160e-21c4-4a5e-91f9-d6c04f9b6656",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Create Board",
+      "targets": [
+        ["linkText=Create Board", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Create Board')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/User/CreateBoard')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Create Board')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fcd7a2a0-b7cc-41e1-8fe1-d90ac94858a7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.form-control:nth-child(2)",
+      "targets": [
+        ["css=.form-control:nth-child(2)", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa4c9ad4-5ca7-4eb7-a2f2-7a06e45553a8",
+      "comment": "",
+      "command": "type",
+      "target": "css=.form-control:nth-child(2)",
+      "targets": [
+        ["css=.form-control:nth-child(2)", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "TestName"
+    }, {
+      "id": "8ba66719-4dac-4e14-840f-a466efd4ffa8",
+      "comment": "",
+      "command": "type",
+      "target": "css=.form-control:nth-child(4)",
+      "targets": [
+        ["css=.form-control:nth-child(4)", "css:finder"],
+        ["xpath=(//input[@type='text'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/div/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Test!"
+    }, {
+      "id": "a2e66bc6-6f86-46fd-97c6-9e502512dbda",
+      "comment": "",
+      "command": "type",
+      "target": "css=.form-control:nth-child(6)",
+      "targets": [
+        ["css=.form-control:nth-child(6)", "css:finder"],
+        ["xpath=(//input[@type='text'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/div/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "Test~"
+    }, {
+      "id": "9fd7f31c-3dd0-4d35-bf54-a09bde5c1092",
+      "comment": "",
+      "command": "type",
+      "target": "css=.form-control:nth-child(8)",
+      "targets": [
+        ["css=.form-control:nth-child(8)", "css:finder"],
+        ["xpath=(//input[@type='text'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/div/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "Test@"
+    }, {
+      "id": "47d38e18-eb6d-4e9a-8791-a45e87103a6d",
+      "comment": "",
+      "command": "type",
+      "target": "css=.react-multi-email > input",
+      "targets": [
+        ["css=.react-multi-email > input", "css:finder"],
+        ["xpath=//input[@value='Test@Test.com']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "Test@Test.com"
+    }, {
+      "id": "e75c048b-0f17-4f5f-9e5d-f0d7b5e35934",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9313500-b6ef-4bcf-a133-d42451f9b370",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=button1",
+      "targets": [],
+      "value": "btn btn-primary btn-block"
+    }]
+  }, {
+    "id": "c63bd067-5d66-42b6-8e6d-59ec49d9e268",
+    "name": "TestAccessToJoinBoardFromBoard",
+    "commands": [{
+      "id": "79e9f3be-c215-43ef-8360-fc5633237824",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/User/Board",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ab114180-0c47-439e-8484-55ef2763abdb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1848x1053",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df9a4daf-d19f-4213-b9da-4fc1ee8d43a9",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Join Board",
+      "targets": [
+        ["linkText=Join Board", "linkText"],
+        ["css=.nav-item:nth-child(3) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Join Board')]", "xpath:link"],
+        ["xpath=//div[@id='navbarToggler']/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/User/JoinBoard')]", "xpath:href"],
+        ["xpath=//li[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Join Board')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3459ac3-bbfc-4e7d-8f8d-949a75856f99",
+      "comment": "",
+      "command": "assert",
+      "target": "id=JoinButton",
+      "targets": [],
+      "value": "undefined"
+    }]
+  }],
+  "suites": [{
+    "id": "9cedd360-f9c0-4e61-a64f-e9adb91acde0",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/", "http://localhost:3000/User/Board", "http://localhost:3000/User/JoinBoard"],
+  "plugins": []
+}
