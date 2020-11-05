@@ -3,22 +3,23 @@ import {Link, Redirect} from "react-router-dom";
 import { ReactMultiEmail, isEmail } from 'react-multi-email';
 import 'react-multi-email/style.css';
 
+//import icons
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+
 export default class BoardCreation extends Component {
 
     boardName;
-    column1Name;
-    column2Name;
-    column3Name;
     invites;
     boardID;
 
-    state = {
-        emails: [],
-    };
-
     constructor(props){
         super(props);
-        this.state={redirect:null};
+        this.state = {
+            redirect:null,
+            emails: [],
+            columns: ['']
+        };
     }
 
     CreationCall= async (event)=>{
@@ -105,20 +106,38 @@ export default class BoardCreation extends Component {
         this.boardName=event.target.value;
     }
 
-    Column1NameChangeHandler=(event)=>{
-        this.column1Name=event.target.value;
-    }
-    Column2NameChangeHandler=(event)=>{
-        this.column2Name=event.target.value;
-    }
-    Column3NameChangeHandler=(event)=>{
-        this.column3Name=event.target.value;
+    createColumnEntry(){
+        return this.state.columns.map((el, i) => 
+            <div key={i}>
+                <label>Column {i + 1}</label>
+                <div style={{display: "block"}}>
+                    <input type="text" className="form-control" value={el||''} placeholder="Name" 
+                        onChange={this.handleChange.bind(this, i)}
+                        style={{width: "70%", display: "inline"}}/>
+                    <button className="btn" value='remove' onClick={this.removeClick.bind(this, i)}><RemoveIcon /></button>
+                    <button className="btn" value='remove' onClick={this.addClick.bind(this)}><AddIcon /></button>
+                </div>
+            </div>          
+        )
     }
 
-    InvitesChangeHandler=(event)=>{
-        this.invites=event.target.value;
-    }
-
+    handleChange(i, event) {
+        let columns = [...this.state.columns];
+        columns[i] = event.target.value;
+        this.setState({ columns });
+     }
+     
+     addClick(){
+       this.setState(prevState => ({ columns: [...prevState.columns, '']}))
+     }
+     
+     removeClick(i){
+        if(this.state.columns.length > 1){
+            let columns = [...this.state.columns];
+            columns.splice(i,1);
+            this.setState({ columns });
+        }
+     }
 
     render() {
         if(this.state.redirect){
@@ -154,14 +173,7 @@ export default class BoardCreation extends Component {
                                 <label>Board Name</label>
                                 <input type="text" className="form-control" placeholder="Name" onChange={this.BoardNameChangeHandler}/>
 
-                                <label>Column 1 Name</label>
-                                <input type="text" className="form-control" placeholder="To Do" onChange={this.Column1NameChangeHandler}/>
-
-                                <label>Column 2 Name</label>
-                                <input type="text" className="form-control" placeholder="Doing" onChange={this.Column2NameChangeHandler}/>
-
-                                <label>Column 3 Name</label>
-                                <input type="text" className="form-control" placeholder="Done" onChange={this.Column3NameChangeHandler}/>
+                                {this.createColumnEntry()}
 
                                 <label>Invite others</label>
 
