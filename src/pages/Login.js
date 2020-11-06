@@ -12,7 +12,7 @@ export default class Login extends Component {
     LoginCall=(event)=>{
         event.preventDefault();
         //TODO: change url to real backend, currently using postman mock server
-        return fetch('https://79771b58-1e8b-4f8a-b168-c46e4f0fc9cc.mock.pstmn.io/api/auth/login', {
+        return fetch('http://coms-319-t15.cs.iastate.edu/api/auth/login', {
             method: 'POST',
             body: JSON.stringify({
               email: this.address,

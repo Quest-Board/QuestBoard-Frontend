@@ -12,17 +12,21 @@ export default class SignUp extends Component {
     }
     RegistrationCall=(event)=>{
         event.preventDefault();
-        const Http = new XMLHttpRequest();
-        const url="/api/auth/register";//TODO replace this URL with the server URL.
-        const data={
-            email: this.address,
-            password: this.password
-        }
-
-        Http.open("POST",url);
-        Http.send(JSON.stringify(data));
-
-        //TODO on successful response, redirect to login page.
+        //TODO: change url to real backend, currently using postman mock server
+        return fetch('http://coms-319-t15.cs.iastate.edu/api/auth/register', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: this.address,
+                password: this.password
+            })
+        })
+            .then((response) => {
+                if (response.ok){
+                    console.log("ok");
+                    this.setState({redirect: "/sign-in"})
+                }
+                else window.alert("Error")
+            })
     }
 
     UserChangeHandler=(event)=>{

@@ -13,7 +13,7 @@ export default class BoardJoin extends Component {
                         <div className="collapse navbar-collapse" id="navbarToggler">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to={"/User/Board"}>Your Board</Link>
+                                    <Link className="nav-link" to={"/User/Board"}>My Board</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/User/CreateBoard"}>Create Board</Link>
@@ -33,7 +33,7 @@ export default class BoardJoin extends Component {
                                 <label>Board Code</label>
                                 <input type="text" className="form-control" placeholder="Enter Board Join Code"/>
                             </div>
-                            <button type="submit" className="button">Submit</button>
+                            <button type="submit" className="btn btn-primary btn-block">Submit</button>
                         </form>
                     </div>
                 </div>

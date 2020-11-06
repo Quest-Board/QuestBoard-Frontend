@@ -32,7 +32,7 @@ export default class Board extends Component {
                 </nav>
                 <div className="board-wrapper">
                     <div className="board">
-                        <Columns/>
+                            <Columns/>
                     </div>
                 </div>
             </div>
