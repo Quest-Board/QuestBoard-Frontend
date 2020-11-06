@@ -10,11 +10,11 @@ export default class Login extends Component {
         this.state={redirect:null};
     }
 
-    //send login attempt with no body, will return ok if the 
+    //send http request to check for cookie, will return ok if the 
     //user has a valid cookie from the last login
     CheckForCookie=()=> {
-        fetch('https://coms-319-t15.cs.iastate.edu/api/board/create?boardname=testBoard', {
-            method: 'POST',
+        fetch('https://coms-319-t15.cs.iastate.edu/api/account/check', {
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -27,6 +27,7 @@ export default class Login extends Component {
           })
     }
 
+    //when page loads check cookie
     componentDidMount() {
         this.CheckForCookie();
     }
