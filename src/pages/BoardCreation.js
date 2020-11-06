@@ -25,7 +25,7 @@ export default class BoardCreation extends Component {
     CreationCall= async (event)=>{
         event.preventDefault();
         //board name
-        await fetch('http://coms-319-t15.cs.iastate.edu/api/board/create?boardname=' + this.boardName, {
+        await fetch('https://coms-319-t15.cs.iastate.edu/api/board/create?boardname=' + this.boardName, {
             method: 'POST',
           })
           .then((response) => {
@@ -41,7 +41,7 @@ export default class BoardCreation extends Component {
 
         //columns
         for(const column of this.state.columns){
-            await fetch('http://coms-319-t15.cs.iastate.edu/api/board/addcolumn', {
+            await fetch('https://coms-319-t15.cs.iastate.edu/api/board/addcolumn', {
                 method: 'POST',
                 body: JSON.stringify({
                     category: column,
@@ -59,7 +59,7 @@ export default class BoardCreation extends Component {
         //TODO:send emails with invites
         //invites
         for(const email of this.state.emails){
-            fetch('http://coms-319-t15.cs.iastate.edu/api/board/addmember/' + this.boardID, {
+            fetch('https://coms-319-t15.cs.iastate.edu/api/board/addmember/' + this.boardID, {
             method: 'POST',
             body: JSON.stringify({
                 email: email
