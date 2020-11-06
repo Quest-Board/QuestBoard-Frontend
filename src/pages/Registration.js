@@ -57,7 +57,7 @@ export default class SignUp extends Component {
                             <input type="password" onChange={this.PassChangeHandler} className="form-control" placeholder="Enter password" />
                         </div>
 
-                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                        <button id="RegistrationButton" type="submit" className="btn btn-primary btn-block">Sign Up</button>
                         <p className="forgot-password text-right">
                             Already registered <a href="/sign-in">sign in?</a>
                         </p>
