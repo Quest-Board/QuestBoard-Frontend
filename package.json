@@ -15,7 +15,8 @@
     "react-multi-email": "^0.5.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-table-hoc-draggable-columns": "^1.2.5"
+    "react-table-hoc-draggable-columns": "^1.2.5",
+    "react-trello": "^2.2.8"
   },
   "scripts": {
     "start": "react-scripts start",

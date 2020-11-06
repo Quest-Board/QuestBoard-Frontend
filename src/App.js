@@ -10,7 +10,6 @@ import MainMenu from "./pages/MainMenu";
 import Board from "./pages/Board";
 import BoardJoin from "./pages/BoardJoin";
 import BoardCreation from "./pages/BoardCreation";
-import Columns from "./components/Columns";
 function App() {
     return (
         <Router>
@@ -18,7 +17,6 @@ function App() {
                 <Route path="/User/Board" component={Board} />
                 <Route path="/User/JoinBoard" component={BoardJoin} />
                 <Route path="/User/CreateBoard" component={BoardCreation} />
-                <Route path="/User/Columns" component={Columns}/>
                 <div className="App">
                     <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                         <div className="container">
