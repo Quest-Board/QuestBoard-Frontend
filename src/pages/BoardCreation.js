@@ -28,13 +28,15 @@ export default class BoardCreation extends Component {
         await fetch('https://coms-319-t15.cs.iastate.edu/api/board/create?boardname=' + this.boardName, {
             method: 'POST',
           })
-          .then((response) => {
-            if (!response.ok){
+          .then(response => {
+              if (!response.ok){
                 alert("Error creating board")
                 return
-            }else{
-                this.boardID = response.json().id;
-            }
+              }
+              response.json();
+            })
+          .then(data => {
+                this.boardID = data.id;
           })
 
         //columns
