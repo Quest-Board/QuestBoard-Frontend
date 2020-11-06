@@ -33,7 +33,7 @@ export default class BoardJoin extends Component {
                                 <label>Board Code</label>
                                 <input type="text" className="form-control" placeholder="Enter Board Join Code"/>
                             </div>
-                            <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                            <button id="JoinBoardButton" type="submit" className="btn btn-primary btn-block">Submit</button>
                         </form>
                     </div>
                 </div>
