@@ -32,12 +32,10 @@ export default class BoardCreation extends Component {
             if (!response.ok){
                 alert("Error creating board")
                 return
+            }else{
+                this.boardID = response.json().id;
             }
-          }).then(
-              (result) => {
-                 this.boardID = result.ID; 
-              }
-          )
+          })
 
         //columns
         for(const column of this.state.columns){
