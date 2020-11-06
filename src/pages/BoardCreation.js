@@ -66,7 +66,7 @@ export default class BoardCreation extends Component {
         //TODO:send emails with invites
         //invites
         for(const email of this.state.emails){
-            fetch('https://coms-319-t15.cs.iastate.edu/api/board/addmember/' + this.boardID, {
+            await fetch('https://coms-319-t15.cs.iastate.edu/api/board/addmember/' + this.boardID, {
             method: 'POST',
             body: JSON.stringify({
                 email: email
