@@ -39,51 +39,24 @@ export default class BoardCreation extends Component {
               }
           )
 
-        //add column 1
-        fetch('http://coms-319-t15.cs.iastate.edu/api/board/addcolumn', {
-        method: 'POST',
-        body: JSON.stringify({
-            category: this.column1Name,
-            boardID: this.boardID
-            })
-        })
-        .then((response) => {
-        if (!response.ok){
-            alert("Error creating column 1, " + this.column1Name)
-            return
+        //columns
+        for(const column of this.state.columns){
+            await fetch('http://coms-319-t15.cs.iastate.edu/api/board/addcolumn', {
+                method: 'POST',
+                body: JSON.stringify({
+                    category: column,
+                    boardID: this.boardID
+                    })
+                })
+                .then((response) => {
+                if (!response.ok){
+                    alert("Error creating column '" + column + "'")
+                    return
+                }
+                })
         }
-        })
-
-        //add column 2
-        fetch('http://coms-319-t15.cs.iastate.edu/api/board/addcolumn', {
-        method: 'POST',
-        body: JSON.stringify({
-            category: this.column2Name,
-            boardID: this.boardID
-            })
-        })
-        .then((response) => {
-        if (!response.ok){
-            alert("Error creating column 2, " + this.column2Name)
-            return
-        }
-        })
-
-        //add column 3
-        fetch('http://coms-319-t15.cs.iastate.edu/api/board/addcolumn', {
-        method: 'POST',
-        body: JSON.stringify({
-            category: this.column3Name,
-            boardID: this.boardID
-            })
-        })
-        .then((response) => {
-        if (!response.ok){
-            alert("Error creating column 3, " + this.column3Name)
-            return
-        }
-        })
-
+    
+        //TODO:send emails with invites
         //invites
         for(const email of this.state.emails){
             fetch('http://coms-319-t15.cs.iastate.edu/api/board/addmember/' + this.boardID, {
@@ -108,15 +81,14 @@ export default class BoardCreation extends Component {
 
     createColumnEntry(){
         return this.state.columns.map((el, i) => 
-            <div key={i}>
+            <div key={i} style={{paddingLeft: 30}}>
                 <label>Column {i + 1}</label>
                 <div style={{display: "block"}}>
                     <input type="text" className="form-control" value={el||''} placeholder="Name" 
                         onChange={this.handleChange.bind(this, i)}
-                        style={{width: "70%", display: "inline"}}/>
-                    <button className="btn" value='remove' onClick={this.removeClick.bind(this, i)}><RemoveIcon /></button>
-                    <button className="btn" value='remove' onClick={this.addClick.bind(this)}><AddIcon /></button>
-                </div>
+                        style={{width: "90%", display: "inline"}}/>
+                        <button type="button" className="btn" value='remove' onClick={this.removeClick.bind(this, i)}><RemoveIcon /></button>
+                    </div>
             </div>          
         )
     }
@@ -125,19 +97,19 @@ export default class BoardCreation extends Component {
         let columns = [...this.state.columns];
         columns[i] = event.target.value;
         this.setState({ columns });
-     }
+    }
      
-     addClick(){
-       this.setState(prevState => ({ columns: [...prevState.columns, '']}))
-     }
+    addClick(){
+        this.setState(prevState => ({ columns: [...prevState.columns, '']}))
+    }
      
-     removeClick(i){
+    removeClick(i){
         if(this.state.columns.length > 1){
             let columns = [...this.state.columns];
             columns.splice(i,1);
             this.setState({ columns });
         }
-     }
+    }
 
     render() {
         if(this.state.redirect){
@@ -166,12 +138,16 @@ export default class BoardCreation extends Component {
                     </div>
                 </nav>
                 <div className="menu-wrapper">
-                    <div className="menu">
+                    <div className="menu" style={{overflowY: "auto"}}>
                         <form onSubmit={this.CreationCall}>
                             <h3>Create Board</h3>
                             <div className="form-group">
                                 <label>Board Name</label>
-                                <input type="text" className="form-control" placeholder="Name" onChange={this.BoardNameChangeHandler}/>
+                                <input type="text" id="boardName" className="form-control" placeholder="Name" onChange={this.BoardNameChangeHandler}/>
+
+                                <label style={{paddingTop: 15, paddingLeft: 0}}>Board Columns</label>
+                                <button type="button" className="btn" value='add' onClick={this.addClick.bind(this)}><AddIcon /></button>
+                
 
                                 {this.createColumnEntry()}
 
