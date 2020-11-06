@@ -1,156 +1,44 @@
-import React, { useState } from "react";
-import { DragDropContext, Draggable, Droppable }from "react-beautiful-dnd";
-import uuid from "uuid/v4";
+import React, {Component, useState} from "react";
+import Board from 'react-trello';
 
 
-const itemsFromBackend = [
-    { id: uuid(), content: "First task" },
-    { id: uuid(), content: "Test1" },
-    { id: uuid(), content: "Third task" },
-    { id: uuid(), content: "Fourth task" },
-    { id: uuid(), content: "Fifth task" }
-];
 
 
-const columnsFromBackend = {
-    [uuid()]: {
-        name: "Requested",
-        items: itemsFromBackend
-    },
-    [uuid()]: {
-        name: "Defined",
-        items: []
-    },
-    [uuid()]: {
-        name: "To do",
-        items: []
-    },
-    [uuid()]: {
-        name: "In Progress",
-        items: []
-    },
-    [uuid()]: {
-        name: "Done",
-        items: []
+export default class Columns extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            lanes: [
+                {
+                    id: 'lane1',
+                    title: 'Planned Tasks',
+                    label: '2/2',
+                    cards: [
+                        {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: false},
+                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', metadata: {sha: 'be312a1'}}
+                    ]
+                },
+                {
+                    id: 'lane2',
+                    title: 'Completed',
+                    label: '0/0',
+                    cards: []
+                }
+            ]
+        };
     }
-};
 
-const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
 
-    if (source.droppableId !== destination.droppableId) {
-        const sourceColumn = columns[source.droppableId];
-        const destColumn = columns[destination.droppableId];
-        const sourceItems = [...sourceColumn.items];
-        const destItems = [...destColumn.items];
-        const [removed] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, removed);
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...sourceColumn,
-                items: sourceItems
-            },
-            [destination.droppableId]: {
-                ...destColumn,
-                items: destItems
-            }
-        });
-    } else {
-        const column = columns[source.droppableId];
-        const copiedItems = [...column.items];
-        const [removed] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removed);
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...column,
-                items: copiedItems
-            }
-        });
+
+    render(){
+        return(
+            <Board
+                editable
+                style={{height:"100%", background: "#ffffff"}}
+                canAddLanes
+                editLaneTitle
+                data={this.state}/>
+        );
     }
-};
+    }
 
-function Columns() {
-    const numColumns=4;
-    const [columns, setColumns] = useState(columnsFromBackend);
-    return (
-        <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
-            <DragDropContext
-                onDragEnd={result => onDragEnd(result, columns, setColumns)}
-            >
-                {Object.entries(columns).map(([columnId, column], index) => {
-                    return (
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center"
-                            }}
-                            key={columnId}
-                        >
-                            <h2>{column.name}</h2>
-                            <div style={{ margin: 8 }}>
-                                <Droppable droppableId={columnId} key={columnId}>
-                                    {(provided, snapshot) => {
-                                        return (
-                                            <div
-                                                {...provided.droppableProps}
-                                                ref={provided.innerRef}
-                                                style={{
-                                                    background: snapshot.isDraggingOver
-                                                        ? "lightblue"
-                                                        : "lightgrey",
-                                                    padding: 4,
-                                                    width: 1500/(numColumns+1),
-                                                    minHeight: 750
-                                                }}
-                                            >
-                                                {column.items.map((item, index) => {
-                                                    return (
-                                                        <Draggable
-                                                            key={item.id}
-                                                            draggableId={item.id}
-                                                            index={index}
-                                                        >
-                                                            {(provided, snapshot) => {
-                                                                return (
-                                                                    <div
-                                                                        ref={provided.innerRef}
-                                                                        {...provided.draggableProps}
-                                                                        {...provided.dragHandleProps}
-                                                                        style={{
-                                                                            userSelect: "none",
-                                                                            padding: 16,
-                                                                            margin: "0 0 8px 0",
-                                                                            minHeight: "50px",
-                                                                            backgroundColor: snapshot.isDragging
-                                                                                ? "#263B4A"
-                                                                                : "#456C86",
-                                                                            color: "white",
-                                                                            ...provided.draggableProps.style
-                                                                        }}
-                                                                    >
-                                                                        {item.content}
-                                                                    </div>
-                                                                );
-                                                            }}
-                                                        </Draggable>
-                                                    );
-                                                })}
-                                                {provided.placeholder}
-                                            </div>
-                                        );
-                                    }}
-                                </Droppable>
-                            </div>
-                        </div>
-                    );
-                })}
-            </DragDropContext>
-        </div>
-    );
-}
-
-export default Columns;
