@@ -49,7 +49,11 @@ export default class BoardCreation extends Component {
                 body: JSON.stringify({
                     category: column,
                     boardID: this.boardID
-                    })
+                    }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
                 })
                 .then((response) => {
                 if (!response.ok){
@@ -66,7 +70,11 @@ export default class BoardCreation extends Component {
             method: 'POST',
             body: JSON.stringify({
                 email: email
-                })
+                }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
             })
             .then((response) => {
             if (!response.ok){
