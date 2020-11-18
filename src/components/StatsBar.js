@@ -3,8 +3,16 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 
 export default class StatBar extends Component {
 
-    rank = "Squire";
-    xp = 0;
+    constructor(props){
+        super(props);
+        this.update();
+        this.state = {rank:"Squire", xp:0}
+    }
+    
+
+    async componentDidMount(){
+        await this.update();
+    }
 
     async update(){
         //event.preventDefault();
@@ -23,16 +31,19 @@ export default class StatBar extends Component {
               return response.json();
             })
           .then(data => {
-                this.xp = data.points % 1000;
+                this.state.xp = data.points % 1000;
                 switch(data.rank){
                     case 0:
-                        this.rank = "Squire";
+                        this.state.rank = "Squire";
                         break;
                     case 1:
-                        this.rank = "Knight";
+                        this.state.rank = "Knight";
                         break;
                     case 2:
-                        this.rank = "King";
+                        this.state.rank = "King";
+                        break;
+                    default:
+                        this.state.rank = "Squire";
                         break;
                 }
           })
@@ -45,11 +56,11 @@ export default class StatBar extends Component {
             <div className="stats-bar-wrapper">
                 <div id="statsBar" className="stats-bar">
                     <div style={{display: "flex"}}>
-                        <img src={require("../images/" + this.rank + ".png")} alt={this.rank} style={{width:40, alignSelf:"center"}}></img>
-                        <h3 style={{alignSelf:"center"}}>{this.rank}</h3>
+                        <img src={require("../images/" + this.state.rank + ".png")} alt={this.state.rank} style={{width:40, alignSelf:"center"}}></img>
+                        <h3 style={{alignSelf:"center"}}>{this.state.rank}</h3>
                     </div>
                     <div style={{paddingTop:5}}>
-                        <ProgressBar label={`${this.xp / 10}%`} now={this.xp / 10} />
+                        <ProgressBar label={`${this.state.xp / 10}%`} now={this.state.xp / 10} />
                     </div>
                 </div>
             </div>
