@@ -5,8 +5,7 @@ export default class StatBar extends Component {
 
     constructor(props){
         super(props);
-        this.update();
-        this.state = {rank:"Squire", xp:0}
+        this.state = {rank:"King", xp:851}
     }
     
 
@@ -17,6 +16,7 @@ export default class StatBar extends Component {
     async update(){
         //event.preventDefault();
         //TODO
+        console.log("in update")
         await fetch('https://coms-319-t15.cs.iastate.edu/api/account/stats', {
             method: 'GET',
             headers: {
@@ -31,19 +31,19 @@ export default class StatBar extends Component {
               return response.json();
             })
           .then(data => {
-                this.state.xp = data.points % 1000;
+                this.setState({xp: data.points % 1000});
                 switch(data.rank){
                     case 0:
-                        this.state.rank = "Squire";
+                        this.setState({rank: "Squire"});
                         break;
                     case 1:
-                        this.state.rank = "Knight";
+                        this.setState({rank: "Knight"});
                         break;
                     case 2:
-                        this.state.rank = "King";
+                        this.setState({rank: "King"});
                         break;
                     default:
-                        this.state.rank = "Squire";
+                        this.setState({rank: "Squire"});
                         break;
                 }
           })
@@ -51,7 +51,6 @@ export default class StatBar extends Component {
 
 
     render() {
-        this.update();
         return (
             <div className="stats-bar-wrapper">
                 <div id="statsBar" className="stats-bar">
