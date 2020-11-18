@@ -5,7 +5,7 @@ export default class StatBar extends Component {
 
     constructor(props){
         super(props);
-        this.state = {rank:"King", xp:851}
+        this.state = {rank:"Squire", xp:0}
     }
     
 
@@ -14,9 +14,6 @@ export default class StatBar extends Component {
     }
 
     async update(){
-        //event.preventDefault();
-        //TODO
-        console.log("in update")
         await fetch('https://coms-319-t15.cs.iastate.edu/api/account/stats', {
             method: 'GET',
             headers: {
@@ -63,7 +60,6 @@ export default class StatBar extends Component {
                     </div>
                 </div>
             </div>
-            
         );
     }
 }
