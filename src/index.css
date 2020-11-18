@@ -79,6 +79,33 @@ body, html, .App,.Home, #root, .auth-wrapper, .board-wrapper, .menu-wrapper {
   transition: all .3s;
 }
 
+.status-bar-wrapper{
+  display: flex;
+  position: fixed;
+  right: 100px;
+  top: -5px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+
+  transition: top 1s;
+}
+
+.status-bar-wrapper:hover{
+  top: 50px;
+}
+
+.status-bar{
+  width: 300px;
+  height: 100%;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 20px rgba(34, 35, 58, 0.1);
+  padding: 20px 20px 2px 20px;
+  border-radius: 15px;
+  transition: all .3s;
+}
+
 .auth-inner {
   width: 450px;
   margin: auto;
@@ -89,7 +116,7 @@ body, html, .App,.Home, #root, .auth-wrapper, .board-wrapper, .menu-wrapper {
   transition: all .3s;
 }
 
-.auth-wrapper .board-wrapper .menu-wrapper .form-control:focus {
+.auth-wrapper .board-wrapper .menu-wrapper .status-bar-wrapper .form-control:focus {
   border-color: #167bff;
   box-shadow: none;
 }
@@ -113,6 +140,13 @@ body, html, .App,.Home, #root, .auth-wrapper, .board-wrapper, .menu-wrapper {
   margin: 0;
   line-height: 1;
   padding-bottom: 20px;
+}
+
+.status-bar-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-left: 15px;
 }
 
 .custom-control-label {

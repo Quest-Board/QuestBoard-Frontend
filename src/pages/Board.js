@@ -6,6 +6,7 @@ import BoardJoin from "./BoardJoin";
 //import Item from '../components/Item'
 import Columns from "../components/Columns";
 import MainMenu from "./MainMenu";
+import StatusBar from "../components/StatusBar"
 export default class Board extends Component {
     list = ['Item 1', 'Item 2', 'Item 3']
     constructor(props){
@@ -42,6 +43,7 @@ export default class Board extends Component {
                             <Columns/>
                     </div>
                 </div>
+                <StatusBar />
             </div>
         );
     }
