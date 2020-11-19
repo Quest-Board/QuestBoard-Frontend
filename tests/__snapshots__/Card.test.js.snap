@@ -5,9 +5,3 @@ exports[`test1 1`] = `
   Hello World
 </div>
 `;
-
-exports[`test1 2`] = `
-<div>
-  Hello World
-</div>
-`;

@@ -13,14 +13,4 @@ test('test3', () => {
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
-
-    //manually trigger callback
-    //tree.props.onMouseEnter();
-    //re-render
-    tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-
-    //manually trigger the callback
-
-
 });
