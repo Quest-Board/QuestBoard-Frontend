@@ -8,7 +8,7 @@ export default class BoardJoin extends Component {
     render() {
         return (
             <div className="Board">
-                <NavBar data={this.props.boardsInfo}/>
+                <NavBar data={this.props.location.boardsInfo}/>
                 <div className="board-wrapper">
                     <div className="auth-inner">
                         <form>

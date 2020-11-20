@@ -25,7 +25,7 @@ export default class BoardCreation extends Component {
             emails: [],
             columns: ['']
         };
-        console.log(props);
+        console.log(props.location.boardsInfo);
     }
 
     CreationCall= async (event)=>{
@@ -136,7 +136,7 @@ export default class BoardCreation extends Component {
 
         return (
             <div className="Board">
-                <NavBar data={this.props.boardsInfo}/>
+                <NavBar data={this.props.location.boardsInfo}/>
                 <div className="menu-wrapper">
                     <div className="menu" style={{overflowY: "auto"}}>
                         <form onSubmit={this.CreationCall}>
