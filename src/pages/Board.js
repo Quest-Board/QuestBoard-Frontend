@@ -15,8 +15,8 @@ export default class QuestBoard extends Component {
                     title: 'Planned Tasks',
                     label: '2/2',
                     cards: [
-                        {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: false},
-                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', metadata: {sha: 'be312a1'}}
+                        {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: true},
+                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', draggable: true, metadata: {sha: 'be312a1'}}
                     ]
                 },
                 {
@@ -48,17 +48,38 @@ export default class QuestBoard extends Component {
     }
 
     //Board Handler Functions:
-    onCardMoveAcrossLane(fromLaneId,toLaneId,cardId,index) {
-        if (toLaneId === "Completed" || toLaneId === "completed") {
+    onCardMoveAcrossLanes= async (fromLaneId, toLaneId, cardId, index)=>{
+        console.log("move card");
+
+        let lastLaneId = this.state.boardsInfo[this.state.index].lanes[this.state.boardsInfo[this.state.index].lanes.length -1].id;
+
+        //add or remove points for cards moved to or from the last (furthest right) lane
+        if ( toLaneId === lastLaneId || toLaneId === lastLaneId) {
             //TODO send API call to add points
+            const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/points/add", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    points:20
+                }) 
+              });
+        }else if(fromLaneId === lastLaneId || fromLaneId === lastLaneId){
+            //TODO send API call to subtract points
         }
-        //TODO send api call to move columns.
+        
     }
 
     onCardAdd=(card,laneId)=>{
         console.log(this.state.boardsInfo);
         console.log(this.state.index);
-        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn"),{
+        //api call to add card to laneId lane
+        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/AddCardToColumn"),{
             method: 'POST',
             mode: 'cors',
             credentials: 'same-origin',
@@ -75,7 +96,6 @@ export default class QuestBoard extends Component {
                 AssigneeEmail:"Null@Null.com"
             })
         }
-        //TODO api call to add card to laneId lane
     }
     onCardDelete(cardId,laneId){
         //TODO api call to remove card from laneId lane
@@ -101,6 +121,8 @@ export default class QuestBoard extends Component {
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
                             onCardAdd={this.onCardAdd}
+                            onCardMoveAcrossLanes={this.onCardMoveAcrossLanes}
+                            onCardDelete={this.onCardDelete}
                             editLaneTitle
                             data={this.state.boardsInfo[this.state.index]}/>
                     </div>
