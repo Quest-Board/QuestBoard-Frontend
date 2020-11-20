@@ -56,12 +56,6 @@ export default class QuestBoard extends Component {
 
 
     render() {
-        if(this.state.response==null){
-            setTimeout(render(),500);
-        }
-
-
-
         if(this.state.redirect){
             return <Redirect to={this.state.redirect}/>
         }
