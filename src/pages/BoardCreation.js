@@ -135,7 +135,7 @@ export default class BoardCreation extends Component {
 
         return (
             <div className="Board">
-                <NavBar data={this.props.location.boardsInfo}/>
+                <NavBar data={this.props.boardsInfo}/>
                 <div className="menu-wrapper">
                     <div className="menu" style={{overflowY: "auto"}}>
                         <form onSubmit={this.CreationCall}>
