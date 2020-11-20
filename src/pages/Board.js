@@ -9,14 +9,15 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,lanes:[
+        this.state={redirect:null,boardIndex:0,boardsInfo:[{
+            lanes:[
                 {
                     id: 'lane1',
                     title: 'Planned Tasks',
                     label: '2/2',
                     cards: [
                         {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: true},
-                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', metadata: {sha: 'be312a1'}}
+                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', draggable: true, metadata: {sha: 'be312a1'}}
                     ]
                 },
                 {
@@ -25,9 +26,133 @@ export default class QuestBoard extends Component {
                     label: '0/0',
                     cards: []
                 }
-            ]};
+            ],
+            name:"Temp Board"
+            }]};
+        this.componentUpdate();
     }
+
+    async componentUpdate(){
+        const response1= await this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
+        const json=await response1.json();
+        this.setState({boardsInfo:await json});
+    }
+
+    async postData(url = '') {
+        const response = await fetch(url, {
+            method: 'GET',
+            mode: 'cors',
+            credentials: 'same-origin',
+            redirect: 'follow',
+
+        })
+        return response;
+    }
+
     //Board Handler Functions:
+    onCardMoveAcrossLanes= async (fromLaneId, toLaneId, cardId, index)=>{
+        console.log(this.state.boardsInfo);
+
+        let lastLaneId = this.state.boardsInfo[this.state.boardIndex].lanes[this.state.boardsInfo[this.state.boardIndex].lanes.length -1].id;
+
+        //add or remove points for cards moved to or from the last (furthest right) lane
+        if ( toLaneId === lastLaneId || toLaneId === lastLaneId) {
+            //TODO send API call to add points
+            const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/points/add", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    points:20
+                }) 
+              });
+        }else if(fromLaneId === lastLaneId || fromLaneId === lastLaneId){
+            //TODO send API call to subtract points
+             const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/points/remove", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    points:20
+                }) 
+              });
+        }
+        
+        const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/movecard", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    cardID:parseInt(cardId, 10),
+                    NewColumnID:parseInt(toLaneId, 10)
+                }) 
+              });
+
+        this.componentUpdate();
+    }
+
+    onCardAdd= async (card,laneId)=>{
+        console.log(this.state.boardsInfo);
+        console.log(this.state.boardIndex);
+        //api call to add card to laneId lane
+        const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    BoardID: parseInt(this.state.boardsInfo[this.state.boardIndex].id, 10),
+                    ColumnID: parseInt(laneId, 10),
+                    Title:card.title,
+                    Description:card.description,
+                    AssigneeEmail:"Null@Null.com"
+                })
+              });
+        this.componentUpdate();
+        return response;
+    }
+    onCardDelete = async (cardId,laneId)=>{
+        //TODO api call to remove card from laneId lane
+        const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + cardId, {
+            method: 'POST', 
+            mode: 'cors', 
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify({
+            }) 
+          });
+
+        this.componentUpdate();
+        return response;
+    }
+
+    ChangeBoard=(id,e)=>{
+        e.preventDefault();
+        this.setState({boardIndex:id});
+    }
 
 
     render() {
@@ -35,17 +160,46 @@ export default class QuestBoard extends Component {
             return <Redirect to={this.state.redirect}/>
         }
 
+        if(!this.state.boardsInfo){
+            this.setState({
+                boardsInfo:[{
+                    lanes:[
+                        {
+                            id: 'lane1',
+                            title: 'Planned Tasks',
+                            label: '2/2',
+                            cards: [
+                                {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: true},
+                                {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', draggable: true, metadata: {sha: 'be312a1'}}
+                            ]
+                        },
+                        {
+                            id: 'lane2',
+                            title: 'Completed',
+                            label: '0/0',
+                            cards: []
+                        }
+                    ],
+                    name:"Temp Board"
+                    }]
+            });
+            this.setState({index:0});
+        }
+
         return (
             <div className="Board">
-                <NavBar />
+                <NavBar clickHandle={this.ChangeBoard} boardsInfo={this.state.boardsInfo} boardIndex={this.state.boardIndex}/>
                 <div className="board-wrapper">
                     <div id="Board" className="board">
                         <Board
                             editable
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
+                            onCardAdd={this.onCardAdd}
+                            onCardMoveAcrossLanes={this.onCardMoveAcrossLanes}
+                            onCardDelete={this.onCardDelete}
                             editLaneTitle
-                            data={this.state}/>
+                            data={this.state.boardsInfo[this.state.boardIndex]}/>
                     </div>
                 </div>
                 <StatsBar />

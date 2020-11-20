@@ -8,12 +8,16 @@ export default class StatBar extends Component {
         this.state = {rank:"Squire", xp:0}
     }
     
-
     async componentDidMount(){
-        await this.update();
+        await this.updatePoints();
+        this.interval = setInterval(() => this.updatePoints(), 5000);
     }
+    componentWillUnmount() {
+        console.log("clear")
+        clearInterval(this.interval);
+      }
 
-    async update(){
+    async updatePoints(){
         await fetch('https://coms-319-t15.cs.iastate.edu/api/account/stats', {
             method: 'GET',
             headers: {
