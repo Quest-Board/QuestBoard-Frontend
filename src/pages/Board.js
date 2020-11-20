@@ -126,7 +126,7 @@ export default class QuestBoard extends Component {
     }
     onCardDelete(cardId,laneId){
         //TODO api call to remove card from laneId lane
-        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard?id=" + cardId, {
+        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + cardId, {
             method: 'POST', 
             mode: 'cors', 
             credentials: 'same-origin',
