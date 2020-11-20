@@ -56,6 +56,7 @@ export default class QuestBoard extends Component {
     }
 
     onCardAdd(card,laneId){
+        console.log(this.state.boardsInfo[this.state.index])
         return fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn"),{
             method: 'POST',
             mode: 'cors',
