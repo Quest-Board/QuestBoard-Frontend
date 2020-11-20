@@ -49,7 +49,7 @@ export default class QuestBoard extends Component {
 
     //Board Handler Functions:
     onCardMoveAcrossLanes= async (fromLaneId, toLaneId, cardId, index)=>{
-        console.log("move card");
+        console.log(this.state.boardsInfo);
 
         let lastLaneId = this.state.boardsInfo[this.state.index].lanes[this.state.boardsInfo[this.state.index].lanes.length -1].id;
 
@@ -126,7 +126,7 @@ export default class QuestBoard extends Component {
     }
     onCardDelete(cardId,laneId){
         //TODO api call to remove card from laneId lane
-        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + cardId, {
+        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + parseInt(cardId, 10), {
             method: 'POST', 
             mode: 'cors', 
             credentials: 'same-origin',
