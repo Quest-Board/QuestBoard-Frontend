@@ -12,28 +12,21 @@ export default class QuestBoard extends Component {
         this.state={redirect:null,response:null};
         console.log("beforeResponse1");
     }
-    componentWillMount(){
-        const response1=this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
+    async componentWillMount(){
+        const response1= await this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
+        const json=await response1.json();
+        this.setState({response:json});
     }
-    postData(url = '', data = {}) {
+    async postData(url = '', data = {}) {
         // Default options are marked with *
-        const response = fetch(url, {
+        const response = await fetch(url, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             credentials: 'same-origin', // include, *same-origin, omit
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-ur
-        }).then(response => {
-            if (!response.ok){
-                alert("Error creating board")
-            }
-            return response.json();
         })
-            .then(data => {
-                console.log(data);
-                this.setState({response:data});
-            });
         //console.log(response.json());
         return response; // parses JSON response into native JavaScript objects
     }
@@ -56,6 +49,7 @@ export default class QuestBoard extends Component {
 
 
     render() {
+        console.log(this.state.response);
         if(this.state.redirect){
             return <Redirect to={this.state.redirect}/>
         }
