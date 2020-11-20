@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Link } from "react-router-dom";
 import * as ReactBootstrap from 'react-bootstrap';
+import Board from "../pages/Board";
 export default class NavBar extends Component {
 
     constructor(props) {
@@ -25,17 +26,17 @@ export default class NavBar extends Component {
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
                                 <ReactBootstrap.Dropdown>
-                                    <ReactBootstrap.Dropdown.Toggle style={{background:"#ffffff"}}>Boards</ReactBootstrap.Dropdown.Toggle>
+                                    <ReactBootstrap.Dropdown.Toggle className="nav-link" style={{background:"#ffffff"}}>Boards</ReactBootstrap.Dropdown.Toggle>
                                     <ReactBootstrap.Dropdown.Menu>
                                         {this.Selection()}
                                     </ReactBootstrap.Dropdown.Menu>
                                 </ReactBootstrap.Dropdown>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={{pathname:"/User/CreateBoard",boardsInfo:this.props.boardsInfo}}>Create Board</Link>
+                                <Link className="nav-link" to={{pathname:"/User/CreateBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle}}>Create Board</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={{pathname:"/User/JoinBoard",boardsInfo:this.props.boardsInfo}}>Join Board</Link>
+                                <Link className="nav-link" to={{pathname:"/User/JoinBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle}}>Join Board</Link>
                             </li>
                         </ul>
                     </div>
