@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import {Link } from "react-router-dom";
 import * as ReactBootstrap from 'react-bootstrap';
 export default class NavBar extends Component {
+
     constructor(props) {
         super(props);
     }
 
     Selection(){
         let list=[];
-        for(let i=0;i<this.props.data.length;i++){
-            list.push(<ReactBootstrap.Dropdown.Item>{this.props.data[i].name}</ReactBootstrap.Dropdown.Item>);
+        for(let i=0;i<this.props.boardsInfo.length;i++){
+            list.push(<ReactBootstrap.Dropdown.Item>{this.props.boardsInfo[i].name}</ReactBootstrap.Dropdown.Item>);
         }
         return list;
     }
@@ -29,10 +30,10 @@ export default class NavBar extends Component {
                                 </ReactBootstrap.Dropdown>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={"/User/CreateBoard"}>Create Board</Link>
+                                <Link className="nav-link" to={{pathname:"/User/CreateBoard",boardsInfo:this.props.boardsInfo}}>Create Board</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={"/User/JoinBoard"}>Join Board</Link>
+                                <Link className="nav-link" to={{pathname:"/User/JoinBoard",boardsInfo:this.props.boardsInfo}}>Join Board</Link>
                             </li>
                         </ul>
                     </div>

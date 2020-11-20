@@ -9,7 +9,7 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,data:[{lanes:[
+        this.state={redirect:null,boardsInfo:[{lanes:[
                 {
                     id: 'lane1',
                     title: 'Planned Tasks',
@@ -33,7 +33,7 @@ export default class QuestBoard extends Component {
     async componentUpdate(){
         const response1= await this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
         const json=await response1.json();
-        this.setState({data:await json});
+        this.setState({boardsInfo:await json});
     }
 
     async postData(url = '') {
@@ -70,7 +70,7 @@ export default class QuestBoard extends Component {
 
         return (
             <div className="Board">
-                <NavBar data={this.state.data}/>
+                <NavBar boardsInfo={this.state.boardsInfo}/>
                 <div className="board-wrapper">
                     <div id="Board" className="board">
                         <Board
@@ -78,7 +78,7 @@ export default class QuestBoard extends Component {
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
                             editLaneTitle
-                            data={this.state.data[0]}/>
+                            data={this.state.boardsInfo[0]}/>
                     </div>
                 </div>
                 <StatsBar />
