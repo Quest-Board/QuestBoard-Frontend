@@ -89,8 +89,8 @@ export default class QuestBoard extends Component {
                 },
                 redirect: 'follow',
                 body: JSON.stringify({
-                    BoardID: this.state.boardsInfo[this.state.index].id,
-                    ColumnID: laneId,
+                    BoardID: parseInt(this.state.boardsInfo[this.state.index].id, 10),
+                    ColumnID: parseInt(laneId, 10),
                     Title:card.title,
                     Description:card.description,
                     AssigneeEmail:"Null@Null.com"
