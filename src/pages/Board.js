@@ -183,6 +183,7 @@ export default class QuestBoard extends Component {
                     name:"Temp Board"
                     }]
             });
+            this.setState({index:0});
         }
 
         return (
