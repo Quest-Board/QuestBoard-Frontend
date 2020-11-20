@@ -127,7 +127,7 @@ export default class QuestBoard extends Component {
         this.componentUpdate();
         return response;
     }
-    async onCardDelete(cardId,laneId){
+    onCardDelete = async (cardId,laneId)=>{
         //TODO api call to remove card from laneId lane
         const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + cardId, 10, {
             method: 'POST', 
