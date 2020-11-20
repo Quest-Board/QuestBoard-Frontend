@@ -4,20 +4,10 @@ import renderer from 'react-test-renderer';
 import StatsBar from '../src/components/StatsBar';
 
 
-test('test2', () => {
+test('Stats bar snapshot test', () => {
     const component = renderer.create(
         <StatsBar></StatsBar>,
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
-
-    //manually trigger callback
-    //tree.props.onMouseEnter();
-    //re-render
-    tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-
-    //manually trigger the callback
-
-
 });

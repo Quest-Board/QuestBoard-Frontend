@@ -16,6 +16,10 @@ export default class BoardCreation extends Component {
 
     constructor(props){
         super(props);
+        
+        this.addClick = this.addClick.bind(this);
+        this.removeClick = this.removeClick.bind(this);
+
         this.state = {
             redirect:null,
             emails: [],
