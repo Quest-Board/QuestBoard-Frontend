@@ -22,6 +22,7 @@ export default class NavBar extends Component {
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
                                 <ReactBootstrap.Dropdown>
+                                    <ReactBootstrap.Dropdown.Toggle>Boards</ReactBootstrap.Dropdown.Toggle>
                                     <ReactBootstrap.Dropdown.Menu>
                                         {this.Selection()}
                                     </ReactBootstrap.Dropdown.Menu>
