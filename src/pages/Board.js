@@ -71,6 +71,19 @@ export default class QuestBoard extends Component {
               });
         }else if(fromLaneId === lastLaneId || fromLaneId === lastLaneId){
             //TODO send API call to subtract points
+             const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/points/remove", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    points:20
+                }) 
+              });
         }
         
         StatsBar.update();
