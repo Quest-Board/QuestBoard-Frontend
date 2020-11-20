@@ -25,7 +25,6 @@ export default class BoardCreation extends Component {
             emails: [],
             columns: ['']
         };
-        console.log(props.location.boardsInfo);
     }
 
     CreationCall= async (event)=>{
