@@ -26,7 +26,7 @@ export default class NavBar extends Component {
                             <li className="nav-item">
                             <Link to={"/User/Board"}>
                                 <ReactBootstrap.Dropdown>
-                                    <ReactBootstrap.Dropdown.Toggle className="nav-link" style={{background:"#ffffff"}}>Boards</ReactBootstrap.Dropdown.Toggle>
+                                    <ReactBootstrap.Dropdown.Toggle className="nav-link" style={{background:"#ffffff"}}>{this.props.boardsInfo[this.props.boardIndex].name}</ReactBootstrap.Dropdown.Toggle>
                                     <ReactBootstrap.Dropdown.Menu>
                                         {this.Selection()}
                                     </ReactBootstrap.Dropdown.Menu>
@@ -34,10 +34,10 @@ export default class NavBar extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={{pathname:"/User/CreateBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle}}>Create Board</Link>
+                                <Link className="nav-link" to={{pathname:"/User/CreateBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle, boardIndex:this.props.boardIndex}}>Create Board</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to={{pathname:"/User/JoinBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle}}>Join Board</Link>
+                                <Link className="nav-link" to={{pathname:"/User/JoinBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle, boardIndex:this.props.boardIndex}}>Join Board</Link>
                             </li>
                         </ul>
                     </div>

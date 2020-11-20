@@ -9,7 +9,8 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,index:0,boardsInfo:[{lanes:[
+        this.state={redirect:null,boardIndex:0,boardsInfo:[{
+            lanes:[
                 {
                     id: 'lane1',
                     title: 'Planned Tasks',
@@ -25,7 +26,9 @@ export default class QuestBoard extends Component {
                     label: '0/0',
                     cards: []
                 }
-            ]}]};
+            ],
+            name:"Temp Board"
+            }]};
         this.componentUpdate();
     }
 
@@ -50,7 +53,7 @@ export default class QuestBoard extends Component {
     onCardMoveAcrossLanes= async (fromLaneId, toLaneId, cardId, index)=>{
         console.log(this.state.boardsInfo);
 
-        let lastLaneId = this.state.boardsInfo[this.state.index].lanes[this.state.boardsInfo[this.state.index].lanes.length -1].id;
+        let lastLaneId = this.state.boardsInfo[this.state.boardIndex].lanes[this.state.boardsInfo[this.state.boardIndex].lanes.length -1].id;
 
         //add or remove points for cards moved to or from the last (furthest right) lane
         if ( toLaneId === lastLaneId || toLaneId === lastLaneId) {
@@ -105,7 +108,7 @@ export default class QuestBoard extends Component {
 
     onCardAdd= async (card,laneId)=>{
         console.log(this.state.boardsInfo);
-        console.log(this.state.index);
+        console.log(this.state.boardIndex);
         //api call to add card to laneId lane
         const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn", {
                 method: 'POST', 
@@ -117,7 +120,7 @@ export default class QuestBoard extends Component {
                 },
                 redirect: 'follow',
                 body: JSON.stringify({
-                    BoardID: parseInt(this.state.boardsInfo[this.state.index].id, 10),
+                    BoardID: parseInt(this.state.boardsInfo[this.state.boardIndex].id, 10),
                     ColumnID: parseInt(laneId, 10),
                     Title:card.title,
                     Description:card.description,
@@ -148,7 +151,7 @@ export default class QuestBoard extends Component {
 
     ChangeBoard=(id,e)=>{
         e.preventDefault();
-        this.setState({index:id});
+        this.setState({boardIndex:id});
     }
 
 
@@ -159,7 +162,7 @@ export default class QuestBoard extends Component {
 
         return (
             <div className="Board">
-                <NavBar clickHandle={this.ChangeBoard} boardsInfo={this.state.boardsInfo}/>
+                <NavBar clickHandle={this.ChangeBoard} boardsInfo={this.state.boardsInfo} boardIndex={this.state.boardIndex}/>
                 <div className="board-wrapper">
                     <div id="Board" className="board">
                         <Board
@@ -170,7 +173,7 @@ export default class QuestBoard extends Component {
                             onCardMoveAcrossLanes={this.onCardMoveAcrossLanes}
                             onCardDelete={this.onCardDelete}
                             editLaneTitle
-                            data={this.state.boardsInfo[this.state.index]}/>
+                            data={this.state.boardsInfo[this.state.boardIndex]}/>
                     </div>
                 </div>
                 <StatsBar />
