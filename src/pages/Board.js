@@ -9,7 +9,7 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,lanes:[]};
+        this.state={redirect:null,response:null};
         console.log("beforeResponse1");
         const response1=this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
         console.log(response1.valueOf());
@@ -32,7 +32,7 @@ export default class QuestBoard extends Component {
         })
             .then(data => {
                 console.log(data);
-                return data;
+                this.setState({response:data});
             });
         //console.log(response.json());
         return response; // parses JSON response into native JavaScript objects
@@ -74,7 +74,7 @@ export default class QuestBoard extends Component {
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
                             editLaneTitle
-                            data={this.state}/>
+                            data={this.state.response[0].lanes}/>
                     </div>
                 </div>
                 <StatsBar />
