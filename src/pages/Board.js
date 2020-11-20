@@ -11,19 +11,8 @@ export default class QuestBoard extends Component {
         super(props);
         this.state={redirect:null,lanes:[]};
         console.log("beforeResponse1");
-        this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
-            .then(response => {
-                console.log("Inside Response")
-                if (!response.ok){
-                    alert("Error creating board")
-                }
-                return response.json();
-            })
-            .then(data => {
-
-                console.log("test");
-                alert(data.name)
-            })
+        const response1=this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
+        console.log(response1)
     }
 
     async postData(url = '', data = {}) {
@@ -36,6 +25,7 @@ export default class QuestBoard extends Component {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-ur
         });
+        console.log(response.json());
         return response.json(); // parses JSON response into native JavaScript objects
     }
 
