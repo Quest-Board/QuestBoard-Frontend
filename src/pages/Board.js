@@ -9,7 +9,7 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,boardsInfo:[{lanes:[
+        this.state={redirect:null,index:0,boardsInfo:[{lanes:[
                 {
                     id: 'lane1',
                     title: 'Planned Tasks',
@@ -60,7 +60,10 @@ export default class QuestBoard extends Component {
     onCardDelete(cardId,laneId){
         //TODO api call to remove card from laneId lane
     }
-
+    ChangeBoard=(id,e)=>{
+        e.preventDefault();
+        this.setState({index:id});
+    }
 
 
     render() {
@@ -70,7 +73,7 @@ export default class QuestBoard extends Component {
 
         return (
             <div className="Board">
-                <NavBar boardsInfo={this.state.boardsInfo}/>
+                <NavBar clickHandle={this.ChangeBoard} boardsInfo={this.state.boardsInfo}/>
                 <div className="board-wrapper">
                     <div id="Board" className="board">
                         <Board
@@ -78,7 +81,7 @@ export default class QuestBoard extends Component {
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
                             editLaneTitle
-                            data={this.state.boardsInfo[0]}/>
+                            data={this.state.boardsInfo[this.state.index]}/>
                     </div>
                 </div>
                 <StatsBar />

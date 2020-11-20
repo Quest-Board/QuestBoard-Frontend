@@ -10,10 +10,11 @@ export default class NavBar extends Component {
     Selection(){
         let list=[];
         for(let i=0;i<this.props.boardsInfo.length;i++){
-            list.push(<ReactBootstrap.Dropdown.Item>{this.props.boardsInfo[i].name}</ReactBootstrap.Dropdown.Item>);
+            list.push(<ReactBootstrap.Dropdown.Item onClick={(e)=>this.props.clickHandle(i,e)}>{this.props.boardsInfo[i].name}</ReactBootstrap.Dropdown.Item>);
         }
         return list;
     }
+
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
