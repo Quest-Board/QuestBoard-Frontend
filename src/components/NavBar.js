@@ -11,6 +11,7 @@ export default class NavBar extends Component {
         for(let i=0;i<data.length;i++){
             list.push(<ReactBootstrap.Dropdown.Item>{data[i].name}</ReactBootstrap.Dropdown.Item>);
         }
+        return list;
     }
     render() {
         return (
