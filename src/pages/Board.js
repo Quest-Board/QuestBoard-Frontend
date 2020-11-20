@@ -12,7 +12,7 @@ export default class QuestBoard extends Component {
         this.state={redirect:null,lanes:[]};
         console.log("beforeResponse1");
         const response1=this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
-        console.log(response1.valueOf());
+        console.log(response1);
     }
 
     async postData(url = '', data = {}) {
@@ -31,7 +31,7 @@ export default class QuestBoard extends Component {
             return response.json();
         })
             .then(data => {
-                return data;
+                return data[0];
             });
         //console.log(response.json());
         return response; // parses JSON response into native JavaScript objects
