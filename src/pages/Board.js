@@ -55,7 +55,7 @@ export default class QuestBoard extends Component {
         //TODO send api call to move columns.
     }
 
-    onCardAdd(card,laneId){
+    onCardAdd=(card,laneId)=>{
         console.log(this.state.boardsInfo);
         console.log(this.state.index);
         return fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn"),{
