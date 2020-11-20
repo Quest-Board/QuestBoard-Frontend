@@ -41,7 +41,8 @@ export default class QuestBoard extends Component {
             method: 'GET',
             mode: 'cors',
             credentials: 'same-origin',
-            redirect: 'follow'
+            redirect: 'follow',
+
         })
         return response;
     }
@@ -55,6 +56,23 @@ export default class QuestBoard extends Component {
     }
 
     onCardAdd(card,laneId){
+        fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn"),{
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'same-origin',
+            redirect: 'follow',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                BoardID: this.state.boardsInfo[this.state.index].id,
+                ColumnID: laneId,
+                Title:card.title,
+                Description:card.description,
+                AssigneeEmail:"Null@Null.com"
+            })
+        }
         //TODO api call to add card to laneId lane
     }
     onCardDelete(cardId,laneId){
