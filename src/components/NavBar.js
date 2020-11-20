@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {Link } from "react-router-dom";
 import * as ReactBootstrap from 'react-bootstrap';
-import Board from "../pages/Board";
 export default class NavBar extends Component {
 
     constructor(props) {
@@ -25,12 +24,14 @@ export default class NavBar extends Component {
                     <div className="collapse navbar-collapse" id="navbarToggler">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
+                            <Link to={"/User/Board"}>
                                 <ReactBootstrap.Dropdown>
                                     <ReactBootstrap.Dropdown.Toggle className="nav-link" style={{background:"#ffffff"}}>Boards</ReactBootstrap.Dropdown.Toggle>
                                     <ReactBootstrap.Dropdown.Menu>
                                         {this.Selection()}
                                     </ReactBootstrap.Dropdown.Menu>
                                 </ReactBootstrap.Dropdown>
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to={{pathname:"/User/CreateBoard",boardsInfo:this.props.boardsInfo, clickHandle:this.props.clickHandle}}>Create Board</Link>

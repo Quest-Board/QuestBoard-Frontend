@@ -83,7 +83,6 @@ export default class QuestBoard extends Component {
     ChangeBoard=(id,e)=>{
         e.preventDefault();
         this.setState({index:id});
-        return <Redirect to={"/User/Board"}/>
     }
 
 
