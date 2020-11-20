@@ -11,8 +11,9 @@ export default class QuestBoard extends Component {
         super(props);
         this.state={redirect:null,response:null};
         console.log("beforeResponse1");
+        this.response.setState({response:[]})
     }
-    componentDidMount(){
+    componentWillMount(){
         const response1=this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
     }
     async postData(url = '', data = {}) {
