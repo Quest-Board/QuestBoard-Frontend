@@ -73,6 +73,7 @@ export default class QuestBoard extends Component {
             //TODO send API call to subtract points
         }
         
+        StatsBar.update();
     }
 
     onCardAdd= (card,laneId)=>{
