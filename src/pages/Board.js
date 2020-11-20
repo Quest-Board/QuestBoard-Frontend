@@ -12,13 +12,13 @@ export default class QuestBoard extends Component {
         this.state={redirect:null,response:null};
         console.log("beforeResponse1");
     }
-    async componentWillMount(){
+    async componentDidMount(){
         const response1= await this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
-        const json=await response1.json();
-        this.setState({response:json});
+        //const json=await response1.json();
+        //that.setState({response:await json});
     }
     async postData(url = '', data = {}) {
-        // Default options are marked with *
+        const that=this;
         const response = await fetch(url, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -26,7 +26,15 @@ export default class QuestBoard extends Component {
             credentials: 'same-origin', // include, *same-origin, omit
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-ur
+        }).then(response => {
+            if (!response.ok){
+                alert("Error creating board")
+            }
+            return response.json();
         })
+            .then(data => {
+                that.setState({response:data});
+            })
         //console.log(response.json());
         return response; // parses JSON response into native JavaScript objects
     }
