@@ -17,6 +17,7 @@ export default class NavBar extends Component {
     }
 
     render() {
+        
         return (
             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
                 <div className="container">
