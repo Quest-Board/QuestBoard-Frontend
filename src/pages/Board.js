@@ -9,16 +9,33 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,response:null};
+        this.state={redirect:null,data:{lanes:[
+                {
+                    id: 'lane1',
+                    title: 'Planned Tasks',
+                    label: '2/2',
+                    cards: [
+                        {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: false},
+                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', metadata: {sha: 'be312a1'}}
+                    ]
+                },
+                {
+                    id: 'lane2',
+                    title: 'Completed',
+                    label: '0/0',
+                    cards: []
+                }
+            ]}};
         console.log("beforeResponse1");
+        this.componentWillMount();
     }
-    async componentDidMount(){
+    async componentWillMount(){
         const response1= await this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
-        //const json=await response1.json();
-        //that.setState({response:await json});
+        const json=await response1.json();
+        this.setState({data:await json[0]});
+        console.log(json[0]);
     }
     async postData(url = '', data = {}) {
-        const that=this;
         const response = await fetch(url, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -26,15 +43,7 @@ export default class QuestBoard extends Component {
             credentials: 'same-origin', // include, *same-origin, omit
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-ur
-        }).then(response => {
-            if (!response.ok){
-                alert("Error creating board")
-            }
-            return response.json();
         })
-            .then(data => {
-                that.setState({response:data});
-            })
         //console.log(response.json());
         return response; // parses JSON response into native JavaScript objects
     }
@@ -57,7 +66,6 @@ export default class QuestBoard extends Component {
 
 
     render() {
-        console.log(this.state.response);
         if(this.state.redirect){
             return <Redirect to={this.state.redirect}/>
         }
@@ -72,7 +80,7 @@ export default class QuestBoard extends Component {
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
                             editLaneTitle
-                            data={this.state.response[0].lanes}/>
+                            data={this.state.data}/>
                     </div>
                 </div>
                 <StatsBar />
