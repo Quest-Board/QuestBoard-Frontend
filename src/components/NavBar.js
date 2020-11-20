@@ -8,8 +8,8 @@ export default class NavBar extends Component {
 
     Selection(){
         let list=[];
-        for(let i=0;i<data.length;i++){
-            list.push(<ReactBootstrap.Dropdown.Item>{data[i].name}</ReactBootstrap.Dropdown.Item>);
+        for(let i=0;i<this.props.data.length;i++){
+            list.push(<ReactBootstrap.Dropdown.Item>{this.props.data[i].name}</ReactBootstrap.Dropdown.Item>);
         }
         return list;
     }
