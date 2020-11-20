@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import {BrowserRouter as Router, Link, Redirect, Route, Switch} from "react-router-dom";
-import BoardCreation from "./BoardCreation";
-import BoardJoin from "./BoardJoin";
 
 //import Item from '../components/Item'
 import Columns from "../components/Columns";
-import MainMenu from "./MainMenu";
 import StatsBar from "../components/StatsBar"
 import NavBar from "../components/NavBar"
 export default class Board extends Component {
