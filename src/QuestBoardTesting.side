@@ -284,112 +284,6 @@
       "value": "undefined"
     }]
   }, {
-    "id": "41e5714a-3883-46f1-a8ad-c35854f268e6",
-    "name": "testRegistration",
-    "commands": [{
-      "id": "442b6ea4-7128-4e66-87f3-7db38c564982",
-      "comment": "",
-      "command": "open",
-      "target": "/",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "03769257-616e-429f-bff0-c8870a2eec72",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1586x1017",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "6fe0175c-a80b-4393-8e16-d4e3ee7adfa1",
-      "comment": "",
-      "command": "click",
-      "target": "css=.form-group:nth-child(2) > .form-control",
-      "targets": [
-        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@type='email']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/div/input", "xpath:idRelative"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "f3786157-e1ab-4048-b4b9-e04f86252770",
-      "comment": "",
-      "command": "type",
-      "target": "css=.form-group:nth-child(2) > .form-control",
-      "targets": [
-        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@type='email']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/div/input", "xpath:idRelative"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": "BrentBrainTest1@gmail.com"
-    }, {
-      "id": "88f49d42-0274-4597-9481-e1c9e5c1fd86",
-      "comment": "",
-      "command": "type",
-      "target": "css=.form-group:nth-child(3) > .form-control",
-      "targets": [
-        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
-        ["xpath=//input[@type='password']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "Password"
-    }, {
-      "id": "2d13b5e4-5e51-494f-9aca-b52031004c99",
-      "comment": "",
-      "command": "click",
-      "target": "id=RegistrationButton",
-      "targets": [
-        ["id=RegistrationButton", "id"],
-        ["css=#RegistrationButton", "css:finder"],
-        ["xpath=//button[@id='RegistrationButton']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "005fbb03-4e01-4dbf-bdfc-fc8f0878c45d",
-      "comment": "",
-      "command": "type",
-      "target": "css=.form-group:nth-child(2) > .form-control",
-      "targets": [
-        ["css=.form-group:nth-child(2) > .form-control", "css:finder"],
-        ["xpath=//input[@type='email']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/div/input", "xpath:idRelative"],
-        ["xpath=//input", "xpath:position"]
-      ],
-      "value": "testemail2@gmail.com"
-    }, {
-      "id": "ae8bfdc9-c0c3-4fcb-8374-01c559023817",
-      "comment": "",
-      "command": "type",
-      "target": "css=.form-group:nth-child(3) > .form-control",
-      "targets": [
-        ["css=.form-group:nth-child(3) > .form-control", "css:finder"],
-        ["xpath=//input[@type='password']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/div[2]/input", "xpath:idRelative"],
-        ["xpath=//div[2]/input", "xpath:position"]
-      ],
-      "value": "password"
-    }, {
-      "id": "7e6b3389-e6a5-4507-ac3c-d8d25994086a",
-      "comment": "",
-      "command": "mouseOver",
-      "target": "id=LoginButton",
-      "targets": [
-        ["id=LoginButton", "id"],
-        ["css=#LoginButton", "css:finder"],
-        ["xpath=//button[@id='LoginButton']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div/div/form/button", "xpath:idRelative"],
-        ["xpath=//button", "xpath:position"],
-        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }]
-  }, {
     "id": "abe5a8fe-6944-472d-b2c4-e0135e43d931",
     "name": "MenuClick",
     "commands": [{
@@ -594,13 +488,6 @@
     "parallel": false,
     "timeout": 300,
     "tests": ["6786ce46-6605-43f6-9dc2-7004c1386fbb"]
-  }, {
-    "id": "dde18b4c-b3c0-4a10-977a-ba8bcad4c351",
-    "name": "Registration",
-    "persistSession": false,
-    "parallel": false,
-    "timeout": 300,
-    "tests": ["41e5714a-3883-46f1-a8ad-c35854f268e6"]
   }, {
     "id": "dc4ce382-a966-448c-918b-28536de6ef40",
     "name": "BoardOperations",
