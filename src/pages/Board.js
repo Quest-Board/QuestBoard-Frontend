@@ -98,6 +98,7 @@ export default class QuestBoard extends Component {
                             editable
                             style={{height:"100%", background: "#ffffff"}}
                             canAddLanes
+                            onCardAdd={this.onCardAdd}
                             editLaneTitle
                             data={this.state.boardsInfo[this.state.index]}/>
                     </div>
