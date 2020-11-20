@@ -9,28 +9,58 @@ import NavBar from "../components/NavBar"
 export default class QuestBoard extends Component {
     constructor(props){
         super(props);
-        this.state={redirect:null,lanes:[
-                {
-                    id: 'lane1',
-                    title: 'Planned Tasks',
-                    label: '2/2',
-                    cards: [
-                        {id: 'Card1', title: 'Write Blog', description: 'Can AI make memes', label: '30 mins', draggable: true},
-                        {id: 'Card2', title: 'Pay Rent', description: 'Transfer via NEFT', label: '5 mins', metadata: {sha: 'be312a1'}}
-                    ]
-                },
-                {
-                    id: 'lane2',
-                    title: 'Completed',
-                    label: '0/0',
-                    cards: []
+        this.state={redirect:null,lanes:[]};
+        console.log("beforeResponse1");
+        this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
+            .then(response => {
+                console.log("Inside Response")
+                if (!response.ok){
+                    alert("Error creating board")
                 }
-            ]};
+                return response.json();
+            })
+            .then(data => {
+
+                console.log("test");
+                alert(data.name)
+            })
     }
+
+    async postData(url = '', data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-ur
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+    }
+
     //Board Handler Functions:
+    onCardMoveAcrossLane(fromLaneId,toLaneId,cardId,index) {
+        if (toLaneId === "Completed" || toLaneId === "completed") {
+            //TODO send API call to add points
+        }
+        //TODO send api call to move columns.
+    }
+
+    onCardAdd(card,laneId){
+        //TODO api call to add card to laneId lane
+    }
+    onCardDelete(cardId,laneId){
+        //TODO api call to remove card from laneId lane
+    }
+
 
 
     render() {
+
+
+
+
         if(this.state.redirect){
             return <Redirect to={this.state.redirect}/>
         }
