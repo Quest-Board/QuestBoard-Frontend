@@ -1,14 +1,16 @@
 import 'regenerator-runtime/runtime';
 import React from 'react';
 import renderer from 'react-test-renderer';
-import BoardCreation from '../src/pages/BoardCreation';
+import Board from '../src/pages/Board';
 import { BrowserRouter } from 'react-router-dom';
 
 
-test('Board creation snapshot test', () => {
+global.fetch = jest.fn(() => Promise.resolve());
+
+test('Board snapshot test', () => {
     const component = renderer.create(
         <BrowserRouter>
-            <BoardCreation/>
+            <Board/>
         </BrowserRouter>
     );
     let tree = component.toJSON();

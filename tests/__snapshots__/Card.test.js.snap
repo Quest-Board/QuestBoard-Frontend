@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test1 1`] = `
+exports[`Card snapshot test 1`] = `
 <div>
   Hello World
 </div>

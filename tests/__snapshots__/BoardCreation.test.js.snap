@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test3 1`] = `
+exports[`Board creation snapshot test 1`] = `
 <div
   className="Board"
 >

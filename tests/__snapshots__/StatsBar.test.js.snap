@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test2 1`] = `
+exports[`Stats bar snapshot test 1`] = `
 <div
   className="stats-bar-wrapper"
 >
