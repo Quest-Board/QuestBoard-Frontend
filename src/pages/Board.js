@@ -12,6 +12,7 @@ export default class QuestBoard extends Component {
         this.state={redirect:null,lanes:[]};
         console.log("beforeResponse1");
         const response1=this.postData("https://coms-319-t15.cs.iastate.edu/api/board/getboards")
+
         console.log(response1)
     }
 
@@ -24,9 +25,17 @@ export default class QuestBoard extends Component {
             credentials: 'same-origin', // include, *same-origin, omit
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer' // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-ur
-        });
-        console.log(response.json());
-        //return response.json(); // parses JSON response into native JavaScript objects
+        }).then(response => {
+            if (!response.ok){
+                alert("Error creating board")
+            }
+            return response.json();
+        })
+            .then(data => {
+                return data;
+            });
+        //console.log(response.json());
+        return response; // parses JSON response into native JavaScript objects
     }
 
     //Board Handler Functions:
