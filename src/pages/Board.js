@@ -75,27 +75,27 @@ export default class QuestBoard extends Component {
         
     }
 
-    onCardAdd=(card,laneId)=>{
+    onCardAdd= (card,laneId)=>{
         console.log(this.state.boardsInfo);
         console.log(this.state.index);
         //api call to add card to laneId lane
-        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/AddCardToColumn"),{
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'same-origin',
-            redirect: 'follow',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                BoardID: this.state.boardsInfo[this.state.index].id,
-                ColumnID: laneId,
-                Title:card.title,
-                Description:card.description,
-                AssigneeEmail:"Null@Null.com"
-            })
-        }
+        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn", {
+                method: 'POST', 
+                mode: 'cors', 
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                body: JSON.stringify({
+                    BoardID: this.state.boardsInfo[this.state.index].id,
+                    ColumnID: laneId,
+                    Title:card.title,
+                    Description:card.description,
+                    AssigneeEmail:"Null@Null.com"
+                })
+              });
     }
     onCardDelete(cardId,laneId){
         //TODO api call to remove card from laneId lane
