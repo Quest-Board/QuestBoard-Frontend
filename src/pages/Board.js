@@ -26,7 +26,6 @@ export default class QuestBoard extends Component {
                     cards: []
                 }
             ]}]};
-        console.log("beforeResponse1");
         this.componentUpdate();
     }
 
@@ -86,7 +85,7 @@ export default class QuestBoard extends Component {
               });
         }
         
-        const response = fetch("https://coms-319-t15.cs.iastate.edu/api/board/movecard", {
+        const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/movecard", {
                 method: 'POST', 
                 mode: 'cors', 
                 credentials: 'same-origin',
@@ -100,13 +99,15 @@ export default class QuestBoard extends Component {
                     NewColumnID:parseInt(toLaneId, 10)
                 }) 
               });
+
+        this.componentUpdate();
     }
 
-    onCardAdd= (card,laneId)=>{
+    onCardAdd= async (card,laneId)=>{
         console.log(this.state.boardsInfo);
         console.log(this.state.index);
         //api call to add card to laneId lane
-        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn", {
+        const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/addcardtocolumn", {
                 method: 'POST', 
                 mode: 'cors', 
                 credentials: 'same-origin',
@@ -123,10 +124,12 @@ export default class QuestBoard extends Component {
                     AssigneeEmail:"Null@Null.com"
                 })
               });
+        this.componentUpdate();
+        return response;
     }
-    onCardDelete(cardId,laneId){
+    async onCardDelete(cardId,laneId){
         //TODO api call to remove card from laneId lane
-        return fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + parseInt(cardId, 10), {
+        const response = await fetch("https://coms-319-t15.cs.iastate.edu/api/board/deletecard/" + cardId, 10, {
             method: 'POST', 
             mode: 'cors', 
             credentials: 'same-origin',
@@ -138,6 +141,9 @@ export default class QuestBoard extends Component {
             body: JSON.stringify({
             }) 
           });
+
+        this.componentUpdate();
+        return response;
     }
 
     ChangeBoard=(id,e)=>{
